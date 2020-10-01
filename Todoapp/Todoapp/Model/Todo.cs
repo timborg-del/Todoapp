@@ -12,7 +12,7 @@ namespace Todoapp.Model
         string description;
         bool done;
         Person assignee;
-        public string Description
+        public string Description  // property
         {
             get
             {
@@ -23,7 +23,6 @@ namespace Todoapp.Model
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("BAD you have have space or zero input.");
-
                 }
                 else
                 {
@@ -54,16 +53,11 @@ namespace Todoapp.Model
             }
         }
 
-        public Todo(int ID, string desc)
-        {
-            
+        public Todo(int ID, string desc)  // constructor
+        {            
             todoid = ID;
             Description = desc;
-            
-
-
         }
-
 
     }
 

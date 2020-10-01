@@ -17,9 +17,9 @@ namespace Todoapp.Test
         [InlineData("")]
         [InlineData(" ")]
 
-        public void BadDescriptionContructor(string desc) // 
+        public void BadDescriptionContructor(string testValue) // True
         {
-            Assert.Throws<ArgumentException>(() => new Todo(15, desc));
+            Assert.Throws<ArgumentException>(() => new Todo(15, testValue));
         }
 
         [Theory]
@@ -27,12 +27,11 @@ namespace Todoapp.Test
         [InlineData("")]
         [InlineData(" ")]
 
-        public void BadDescriptionProperty(string description)
+        public void BadDescriptionProperty(string testValue)
         {
            
-            Todo whatevername = new Todo(15, "notempt"); // I Have created an obeject of typ TODO by calling constructor gining value 15 and "". / The purpes is to test the Propery in Todo.cs
-            Assert.Throws<ArgumentException>(() => whatevername.Description = description);
-
+            Todo whatevername = new Todo(15, "notempty"); // I Have created an obeject of typ TODO by calling constructor gining value 15 and "". / The purpes is to test the Propery in Todo.cs
+            Assert.Throws<ArgumentException>(() => whatevername.Description = testValue); // Lonely statement.
         }       
 
     }
