@@ -8,10 +8,19 @@ namespace Todoapp.Model
     {
         //  Field
 
-        readonly int todoid;
+        readonly int todoId;
         string description;
         bool done;
         Person assignee;
+        public int TodoId 
+        {
+            get
+            {
+                return todoId;
+            }
+                
+        }
+
         public string Description  // property
         {
             get
@@ -55,7 +64,7 @@ namespace Todoapp.Model
 
         public Todo(int ID, string desc)  // constructor
         {            
-            todoid = ID;
+            todoId = ID;
             Description = desc;
         }
 

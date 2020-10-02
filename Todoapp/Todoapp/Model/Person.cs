@@ -11,6 +11,17 @@ namespace Todoapp.Model
         readonly int personId;
         string firstName = "John";
         string lastName = "Doh";
+
+
+
+        public int PersonId
+        {
+            get
+            {
+                return personId;
+            }
+        }
+
         public string FirstName
         {
             get
@@ -55,6 +66,7 @@ namespace Todoapp.Model
             this.personId = personId;
             this.FirstName = firstName;
             this.LastName = lastName;
+           
         }
 
     }

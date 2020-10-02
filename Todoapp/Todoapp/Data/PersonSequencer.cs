@@ -8,7 +8,7 @@ namespace Todoapp.Data
     public class PersonSequencer
     {
 
-        public static int personId; // int is 0
+        static int personId; // int is 0
 
         public static int NextPersonId()
         {
@@ -16,8 +16,7 @@ namespace Todoapp.Data
         }
         public static void Reset()
         {
-            personId = 0;
-            
+            personId = 0;            
         }
 
 
