@@ -5,7 +5,7 @@ using Todoapp.Model;
 
 namespace Todoapp.Data
 {
-   public class TodoItems
+    public class TodoItems
     {
         // Camelcase = oneTwoT 
         static Todo[] todoArray = new Todo[0];
@@ -32,7 +32,7 @@ namespace Todoapp.Data
             return null;
         }
         //If its not a return type it must be Void 
-        public void NewTodo( string desc)
+        public void NewTodo(string desc)
         {
             int number = todoArray.Length;
             int todoId = TodoSequencer.NextToDoId();
@@ -47,13 +47,69 @@ namespace Todoapp.Data
         }
         public Todo[] FindByDoneStatus(bool doneStatus)
         {
-            return null;
+            Todo[] doneTodo = new Todo[0];
+            foreach (Todo todo in todoArray)
+            {
+                if (todo.Done == doneStatus)
+                {
+
+                    int index = doneTodo.Length;
+                    Array.Resize<Todo>(ref doneTodo, index + 1);
+                    doneTodo[index] = todo;
+                }
+            }
+            return doneTodo;
 
         }
+        public Todo[] FindByAssginee(int personId)
+        {
+            Todo[] assigneeTodo = new Todo[0];
+            foreach (Todo todo in todoArray)
+            {
+                if (todo.Assignee.PersonId == personId)
+                {
 
+                    int number = assigneeTodo.Length;
+                    Array.Resize<Todo>(ref assigneeTodo, number + 1);
+                    assigneeTodo[number] = todo;
+                }
+            }
+            return assigneeTodo;
+        }
+        public Todo[] FindByAssignee(Person assignee)
+        {
+            // Store the assigneeTodo 
+            int personId = assignee.PersonId;
+            Todo[] storedAssignee = FindByAssginee(personId);
+            return storedAssignee;
+        }
+        public Todo[] FindUnassignedTodoItem()
+        {
+            Todo[] storeNullAssignee = new Todo[0];
+            foreach (Todo todo in todoArray)
+            {
+                if (todo.Assignee == null)
+                {
+                    int number = storeNullAssignee.Length;
+                    Array.Resize<Todo>(ref storeNullAssignee, number + 1);
+                    storeNullAssignee[number] = todo;
+
+                }
+            }
+            return storeNullAssignee;
+
+        }
         public void Clear()
         {
-            todoArray = new Todo[0]; 
+            todoArray = new Todo[0];
         }
     }
 }
+
+
+
+
+
+
+
+
