@@ -141,7 +141,32 @@ namespace Todoapp.Test
             Assert.Null(Unsigneed[0].Assignee);
             Assert.Null(Unsigneed[1].Assignee);
        
-        } 
+        }
+        [Fact]
+        public void RemovePerson()
+        {
+            //Arrange
+            TodoItems todoItem = new TodoItems();
+          
+            todoItem.Clear();
+            todoItem.NewTodo("Decription");
+            todoItem.NewTodo("Do");
+
+
+            //Act
+            int size = todoItem.Size();
+            Todo[] todos = todoItem.FindAll();
+
+            todoItem.Remove(todos[0]);
+
+
+            //Assert
+            Assert.Equal(size - 1, todoItem.Size());
+            Assert.Equal("Do", todoItem.FindAll()[0].Description);
+
+        }
 
     }
 }
+
+    

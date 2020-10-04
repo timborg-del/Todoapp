@@ -96,5 +96,28 @@ namespace Todoapp.Test
             Assert.Equal("Bollen", actualPerson.LastName);
 
         }
+        [Fact]
+        public void RemovePerson()
+        {
+            //Arrange
+            People people = new People();
+            people.Clear();
+            people.NewPerson("Göran", "Jsson");
+            people.NewPerson("Olle", "Jsson");
+
+
+            //Act
+           int size = people.Size();
+           Person[] persons = people.FindAll();
+           
+            people.Remove(persons[0]);
+
+
+            //Assert
+            Assert.Equal(size -1, people.Size());
+            Assert.Equal("Olle", people.FindAll()[0].FirstName);
+
+        }
+
     }
 }

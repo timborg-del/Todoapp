@@ -102,6 +102,18 @@ namespace Todoapp.Data
             return storeNullAssignee;
 
         }
+        public void Remove(Todo todo)
+        {
+
+            int indexDel = Array.IndexOf(todoArray, todo);
+            if (indexDel >= 0)
+            {
+                todoArray[indexDel] = todoArray[todoArray.Length - 1];
+                Array.Resize<Todo>(ref todoArray, todoArray.Length - 1);
+
+            }
+
+        }
         public void Clear()
         {
             todoArray = new Todo[0];
