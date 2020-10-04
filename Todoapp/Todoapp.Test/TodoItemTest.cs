@@ -90,5 +90,58 @@ namespace Todoapp.Test
             Assert.Equal(expectedSize, actualSize);
             Assert.Equal("This is Description", actualTodo.Description);            
         }
+        [Fact]
+        public void TestFindDoneByStatus()
+        {
+            //Arrange
+            TodoItems todoItem = new TodoItems();
+            todoItem.Clear();
+            todoItem.NewTodo("String");
+            todoItem.NewTodo("Hobo");
+            todoItem.NewTodo("Jörge");
+
+            //Hobo is taked out from the list Now i have onely two obejct left
+            Todo[] allTodos = todoItem.FindAll();
+            allTodos[1].Done = true;
+            //Act
+            
+            //This is catching teknik 
+            Todo[] storeFalse = todoItem.FindByDoneStatus(false);
+            Todo[] storeTrue = todoItem.FindByDoneStatus(true);
+
+            //Assert 
+            Assert.Equal("String", storeFalse[0].Description);
+            Assert.Equal("Jörge", storeFalse[1].Description);
+            Assert.Equal("Hobo", storeTrue[0].Description);
+            Assert.Equal(2, storeFalse.Length);
+            Assert.Single(storeTrue);
+        }
+        [Fact]
+        public void TestFindBytodoItem()
+        {
+            //Arrange
+            Person person = new Person(1856, "Garan", "Persson");
+
+            
+            TodoItems todoItem = new TodoItems();
+            todoItem.Clear();
+
+
+            todoItem.NewTodo("hahaha"); //0
+            todoItem.NewTodo("Some stuff to do"); //1
+            todoItem.NewTodo("Hohoho"); //2
+             
+            Todo[] allTodos = todoItem.FindAll();
+            allTodos[1].Assignee = person;
+            //act
+            Todo[] allAssignee = todoItem.FindByAssignee(person);
+            Todo[] Unsigneed = todoItem.FindUnassignedTodoItem();        
+            //Assert
+            Assert.Equal("Some stuff to do", allAssignee[0].Description);
+            Assert.Null(Unsigneed[0].Assignee);
+            Assert.Null(Unsigneed[1].Assignee);
+       
+        } 
+
     }
 }

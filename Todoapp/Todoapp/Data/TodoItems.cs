@@ -61,18 +61,21 @@ namespace Todoapp.Data
             return doneTodo;
 
         }
-        public Todo[] FindByAssginee(int personId)
+        public Todo[] FindByAssignee(int personId)
         {
             Todo[] assigneeTodo = new Todo[0];
             foreach (Todo todo in todoArray)
-            {
-                if (todo.Assignee.PersonId == personId)
+            { 
+
+                if (todo.Assignee != null && todo.Assignee.PersonId == personId)
+
                 {
 
                     int number = assigneeTodo.Length;
                     Array.Resize<Todo>(ref assigneeTodo, number + 1);
                     assigneeTodo[number] = todo;
                 }
+                
             }
             return assigneeTodo;
         }
@@ -80,7 +83,7 @@ namespace Todoapp.Data
         {
             // Store the assigneeTodo 
             int personId = assignee.PersonId;
-            Todo[] storedAssignee = FindByAssginee(personId);
+            Todo[] storedAssignee = FindByAssignee(personId);
             return storedAssignee;
         }
         public Todo[] FindUnassignedTodoItem()
